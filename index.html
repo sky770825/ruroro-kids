@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ruroro童裝 | 鹿肉肉 - 媽媽嚴選・童趣滿滿</title>
+  <meta name="description" content="Ruroro鹿肉肉童裝，0-6歲媽媽嚴選，實拍現貨/專業嚴選/純棉過敏友善。穿出童年的快樂！">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Quicksand:wght@500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #E8A87C;
+      --primary-dark: #C98B6B;
+      --bg: #FFFEF9;
+      --accent: #85B8CB;
+      --accent-warm: #F5D5C8;
+      --text: #3D3D3D;
+      --text-light: #7A7A7A;
+      --card-bg: #FFFFFF;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Noto Sans TC', sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      font-size: 16px;
+      line-height: 1.6;
+    }
+
+    .font-accent {
+      font-family: 'Quicksand', sans-serif;
+    }
+
+    /* Section base */
+    section {
+      padding: 60px 20px;
+    }
+
+    h1 { font-size: 44px; font-weight: 700; }
+    h2 { font-size: 28px; font-weight: 700; }
+    h3 { font-size: 20px; font-weight: 500; }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    /* ===== HERO ===== */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      overflow: hidden;
+      background: linear-gradient(135deg, var(--bg) 0%, var(--accent-warm) 100%);
+    }
+
+    .hero-bg {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      padding: 40px 20px;
+    }
+
+    .hero h1 {
+      color: var(--text);
+      margin-bottom: 16px;
+      letter-spacing: 2px;
+    }
+
+    .hero .tagline {
+      font-family: 'Quicksand', sans-serif;
+      font-size: 24px;
+      color: var(--accent);
+      font-weight: 600;
+      margin-bottom: 24px;
+    }
+
+    .hero .brand-name {
+      display: inline-block;
+      background: var(--primary);
+      color: white;
+      padding: 12px 32px;
+      border-radius: 50px;
+      font-size: 18px;
+      font-weight: 500;
+      text-decoration: none;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .hero .brand-name:hover {
+      transform: scale(1.02);
+      box-shadow: 0 8px 25px rgba(232, 168, 124, 0.4);
+    }
+
+    .hero .followers {
+      margin-top: 20px;
+      font-family: 'Quicksand', sans-serif;
+      font-size: 14px;
+      color: var(--text-light);
+    }
+
+    /* ===== PROMISES ===== */
+    .promises {
+      background: var(--card-bg);
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    .section-title h2 {
+      color: var(--text);
+      margin-bottom: 8px;
+    }
+
+    .section-title p {
+      color: var(--text-light);
+      font-size: 16px;
+    }
+
+    .promise-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 20px;
+    }
+
+    .promise-card {
+      background: var(--card-bg);
+      border-radius: 16px;
+      padding: 32px 24px;
+      text-align: center;
+      border: 2px solid var(--accent-warm);
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .promise-card:hover {
+      transform: scale(1.02);
+      box-shadow: 0 12px 30px rgba(133, 184, 203, 0.2);
+    }
+
+    .promise-icon {
+      width: 64px;
+      height: 64px;
+      margin: 0 auto 16px;
+      background: var(--accent-warm);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 28px;
+    }
+
+    .promise-card h3 {
+      color: var(--primary-dark);
+      margin-bottom: 8px;
+    }
+
+    .promise-card p {
+      color: var(--text-light);
+      font-size: 15px;
+    }
+
+    /* ===== PRODUCTS ===== */
+    .products {
+      background: var(--bg);
+    }
+
+    .product-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 20px;
+    }
+
+    .product-card {
+      background: var(--card-bg);
+      border-radius: 16px;
+      overflow: hidden;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .product-card:hover {
+      transform: scale(1.02);
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
+    }
+
+    .product-img {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+      background: var(--accent-warm);
+    }
+
+    .product-info {
+      padding: 16px;
+    }
+
+    .product-tag {
+      display: inline-block;
+      background: var(--accent);
+      color: white;
+      font-size: 12px;
+      padding: 4px 10px;
+      border-radius: 20px;
+      font-family: 'Quicksand', sans-serif;
+      margin-bottom: 8px;
+    }
+
+    .product-info h3 {
+      color: var(--text);
+      margin-bottom: 4px;
+    }
+
+    .product-price {
+      font-family: 'Quicksand', sans-serif;
+      color: var(--primary-dark);
+      font-size: 18px;
+      font-weight: 700;
+    }
+
+    /* ===== STORY ===== */
+    .story {
+      background: linear-gradient(135deg, var(--accent-warm) 0%, var(--bg) 100%);
+    }
+
+    .story-content {
+      max-width: 800px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .story-avatar {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 4px solid var(--primary);
+      margin-bottom: 24px;
+    }
+
+    .story h2 {
+      color: var(--primary-dark);
+      margin-bottom: 16px;
+    }
+
+    .story p {
+      color: var(--text);
+      font-size: 16px;
+      line-height: 1.8;
+      margin-bottom: 16px;
+    }
+
+    .story-signature {
+      font-family: 'Quicksand', sans-serif;
+      color: var(--accent);
+      font-size: 18px;
+      margin-top: 24px;
+    }
+
+    /* ===== STUDIO ===== */
+    .studio {
+      background: var(--card-bg);
+    }
+
+    .studio-content {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 32px;
+      align-items: center;
+    }
+
+    .studio-img {
+      width: 100%;
+      height: 280px;
+      object-fit: cover;
+      border-radius: 24px;
+      background: var(--accent-warm);
+    }
+
+    .studio-info h2 {
+      color: var(--primary-dark);
+      margin-bottom: 16px;
+    }
+
+    .studio-info p {
+      color: var(--text);
+      margin-bottom: 12px;
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+    }
+
+    .studio-info .icon {
+      color: var(--accent);
+      font-size: 20px;
+      flex-shrink: 0;
+    }
+
+    .studio-note {
+      background: var(--accent-warm);
+      padding: 16px;
+      border-radius: 16px;
+      margin-top: 16px;
+      font-size: 15px;
+      color: var(--text);
+    }
+
+    /* ===== CONTACT ===== */
+    .contact {
+      background: var(--text);
+      color: white;
+      text-align: center;
+    }
+
+    .contact h2 {
+      color: white;
+      margin-bottom: 8px;
+    }
+
+    .contact > .container > p {
+      color: rgba(255, 255, 255, 0.7);
+      margin-bottom: 32px;
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 16px;
+      max-width: 500px;
+      margin: 0 auto;
+    }
+
+    .contact-item {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      padding: 16px 24px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 16px;
+      text-decoration: none;
+      color: white;
+      transition: transform 0.3s, background 0.3s;
+    }
+
+    .contact-item:hover {
+      transform: scale(1.02);
+      background: rgba(255, 255, 255, 0.2);
+    }
+
+    .contact-icon {
+      font-size: 24px;
+    }
+
+    .contact-text {
+      font-size: 16px;
+    }
+
+    .footer {
+      text-align: center;
+      padding-top: 40px;
+      color: rgba(255, 255, 255, 0.5);
+      font-size: 14px;
+      font-family: 'Quicksand', sans-serif;
+    }
+
+    /* ===== RESPONSIVE 768px+ ===== */
+    @media (min-width: 768px) {
+      section {
+        padding: 80px 40px;
+      }
+
+      .hero .tagline {
+        font-size: 32px;
+      }
+
+      .promise-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+
+      .product-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+
+      .product-card:last-child {
+        grid-column: span 1;
+      }
+
+      .product-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+
+      .studio-content {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .contact-grid {
+        grid-template-columns: repeat(3, 1fr);
+        max-width: 800px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ===== HERO ===== -->
+  <section class="hero">
+    <svg class="hero-bg" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="100" cy="150" r="80" fill="#85B8CB" opacity="0.3"/>
+      <circle cx="1300" cy="200" r="120" fill="#E8A87C" opacity="0.2"/>
+      <circle cx="200" cy="700" r="100" fill="#F5D5C8" opacity="0.4"/>
+      <circle cx="1100" cy="750" r="90" fill="#85B8CB" opacity="0.25"/>
+      <circle cx="700" cy="100" r="60" fill="#E8A87C" opacity="0.15"/>
+      <polygon points="50,400 120,320 120,480" fill="#85B8CB" opacity="0.2"/>
+      <polygon points="1350,500 1420,420 1420,580" fill="#F5D5C8" opacity="0.3"/>
+      <polygon points="600,800 680,720 760,800" fill="#E8A87C" opacity="0.2"/>
+      <circle cx="400" cy="300" r="40" fill="#85B8CB" opacity="0.2"/>
+      <circle cx="1000" cy="400" r="50" fill="#F5D5C8" opacity="0.25"/>
+      <polygon points="1200,100 1280,20 1360,100" fill="#85B8CB" opacity="0.15"/>
+      <circle cx="800" cy="600" r="70" fill="#E8A87C" opacity="0.1"/>
+      <circle cx="300" cy="500" r="30" fill="#85B8CB" opacity="0.2"/>
+    </svg>
+    <div class="hero-content">
+      <h1>Ruroro 童裝</h1>
+      <p class="tagline">穿出童年的快樂</p>
+      <a href="https://www.instagram.com/ruroro5233" target="_blank" class="brand-name">
+        @ruroro5233
+      </a>
+      <p class="followers font-accent">✦ 203 位媽咪粉絲共同嚴選 ✦</p>
+    </div>
+  </section>
+
+  <!-- ===== PROMISES ===== -->
+  <section class="promises">
+    <div class="container">
+      <div class="section-title">
+        <h2>品牌承諾</h2>
+        <p>媽媽嚴選・安心感每一刻</p>
+      </div>
+      <div class="promise-grid">
+        <div class="promise-card">
+          <div class="promise-icon">📷</div>
+          <h3>實拍現貨</h3>
+          <p>每件商品真實拍攝，所見即所得<br>庫存充足，快速出貨</p>
+        </div>
+        <div class="promise-card">
+          <div class="promise-icon">✨</div>
+          <h3>專業嚴選</h3>
+          <p>從布料到手感层层把關<br>符合寶貝成長需求</p>
+        </div>
+        <div class="promise-card">
+          <div class="promise-icon">🌿</div>
+          <h3>純棉過敏友善</h3>
+          <p>精選純棉面料<br>溫和親膚，敏感肌寶貝也能安心穿</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== PRODUCTS ===== -->
+  <section class="products">
+    <div class="container">
+      <div class="section-title">
+        <h2>精選商品</h2>
+        <p>0-6 歲童趣穿搭推薦</p>
+      </div>
+      <div class="product-grid">
+        <div class="product-card">
+          <img class="product-img" src="https://images.unsplash.com/photo-1519457431-44ccd64a579b?w=400&h=400&fit=crop" alt="童趣印花套裝">
+          <div class="product-info">
+            <span class="product-tag font-accent">新品</span>
+            <h3>童趣印花套裝</h3>
+            <p class="product-price font-accent">NT$ 590</p>
+          </div>
+        </div>
+        <div class="product-card">
+          <img class="product-img" src="https://images.unsplash.com/photo-1503919545889-aef636e10ad4?w=400&h=400&fit=crop" alt="北歐風連帽外套">
+          <div class="product-info">
+            <span class="product-tag font-accent">熱銷</span>
+            <h3>北歐風連帽外套</h3>
+            <p class="product-price font-accent">NT$ 780</p>
+          </div>
+        </div>
+        <div class="product-card">
+          <img class="product-img" src="https://images.unsplash.com/photo-1515488042361-ee00e0ddd4e4?w=400&h=400&fit=crop" alt="柔和純棉連身衣">
+          <div class="product-info">
+            <span class="product-tag font-accent">嚴選</span>
+            <h3>柔和純棉連身衣</h3>
+            <p class="product-price font-accent">NT$ 450</p>
+          </div>
+        </div>
+        <div class="product-card">
+          <img class="product-img" src="https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?w=400&h=400&fit=crop" alt="條紋家居服套裝">
+          <div class="product-info">
+            <span class="product-tag font-accent">舒適</span>
+            <h3>條紋家居服套裝</h3>
+            <p class="product-price font-accent">NT$ 520</p>
+          </div>
+        </div>
+        <div class="product-card">
+          <img class="product-img" src="https://images.unsplash.com/photo-1519238263530-99bdd11df2ea?w=400&h=400&fit=crop" alt="童趣拼接褲">
+          <div class="product-info">
+            <span class="product-tag font-accent">百搭</span>
+            <h3>童趣拼接褲</h3>
+            <p class="product-price font-accent">NT$ 380</p>
+          </div>
+        </div>
+        <div class="product-card">
+          <img class="product-img" src="https://images.unsplash.com/photo-1543852786-1cf6624b9987?w=400&h=400&fit=crop" alt="柔軟針織開衫">
+          <div class="product-info">
+            <span class="product-tag font-accent">必備</span>
+            <h3>柔軟針織開衫</h3>
+            <p class="product-price font-accent">NT$ 650</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== STORY ===== -->
+  <section class="story">
+    <div class="container">
+      <div class="story-content">
+        <img class="story-avatar" src="https://images.unsplash.com/photo-1478147057286-239e0149e63d?w=200&h=200&fit=crop" alt="Ruroro 品牌創辦人">
+        <h2>品牌故事</h2>
+        <p>
+          作為兩個孩子的媽媽，我深刻了解爸媽對孩子穿著的堅持——<br>
+          要舒適、要安全、也要可愛！<br><br>
+          Ruroro 鹿肉肉的每一件選品，從布料質感、裁車做工到實際穿著體驗，<br>
+          都是我親自把關、反覆確認的成果。<br><br>
+          「媽媽嚴選」不只是口號，是每一天的堅持。
+        </p>
+        <p class="story-signature font-accent">— Ruroro 鹿肉肉</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== STUDIO ===== -->
+  <section class="studio">
+    <div class="container">
+      <div class="studio-content">
+        <img class="studio-img" src="https://images.unsplash.com/photo-1580628351467-4c5c8f1edc8c?w=600&h=400&fit=crop" alt="Ruroro 工作室">
+        <div class="studio-info">
+          <h2>工作室・取貨</h2>
+          <p>
+            <span class="icon">📍</span>
+            <span>桃園市逸林街96-1號</span>
+          </p>
+          <p>
+            <span class="icon">⏰</span>
+            <span>取貨時間：請提前預約</span>
+          </p>
+          <p>
+            <span class="icon">📱</span>
+            <span>IG / Threads：@ruroro5233</span>
+          </p>
+          <div class="studio-note">
+            💡 小提醒：工作室採預約制，請先透過 IG 私訊預約取貨時間唷！這樣我可以準備好完美的包裝等您來。
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CONTACT ===== -->
+  <section class="contact">
+    <div class="container">
+      <h2>聯絡我們</h2>
+      <p>歡迎私訊詢問・合作提案</p>
+      <div class="contact-grid">
+        <a href="https://www.instagram.com/ruroro5233" target="_blank" class="contact-item">
+          <span class="contact-icon">📸</span>
+          <span class="contact-text">Instagram</span>
+        </a>
+        <a href="https://www.threads.net/@ruroro5233" target="_blank" class="contact-item">
+          <span class="contact-icon">💬</span>
+          <span class="contact-text">Threads</span>
+        </a>
+        <a href="mailto:giraffe5233@gmail.com" class="contact-item">
+          <span class="contact-icon">✉️</span>
+          <span class="contact-text">Email</span>
+        </a>
+      </div>
+      <div class="footer">
+        <p class="font-accent">© 2026 Ruroro童裝（鹿肉肉）All Rights Reserved.</p>
+      </div>
+    </div>
+  </section>
+
+</body>
+</html>
