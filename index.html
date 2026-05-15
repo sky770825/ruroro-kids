@@ -7,17 +7,40 @@
   <meta name="description" content="Ruroro鹿肉肉童裝，0-6歲媽媽嚴選，實拍現貨/專業嚴選/純棉過敏友善。穿出童年的快樂！">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Quicksand:wght@500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Roboto:wght@500;700;900&display=swap" rel="stylesheet">
   <style>
+    /* ===== DESIGN TOKENS ===== */
     :root {
+      /* Brand Colors */
+      --peach: #E8A87C;
+      --peach-light: #F5D5C8;
+      --sky: #85B8CB;
+      --cream: #FFFEF9;
+      --white: #FFFFFF;
+      --rose: #F5D5C8;
+      
+      /* Figma System */
       --primary: #E8A87C;
       --primary-dark: #C98B6B;
-      --bg: #FFFEF9;
       --accent: #85B8CB;
-      --accent-warm: #F5D5C8;
+      --bg: #FFFEF9;
+      --card-bg: #FFFFFF;
       --text: #3D3D3D;
       --text-light: #7A7A7A;
-      --card-bg: #FFFFFF;
+      
+      /* Typography */
+      --font-body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-display: 'Roboto', sans-serif;
+      
+      /* Spacing */
+      --radius: 8px;
+      --radius-lg: 16px;
+      --radius-xl: 24px;
+      
+      /* Shadows */
+      --shadow-sm: 0 2px 8px rgba(0,0,0,0.06);
+      --shadow-md: 0 4px 16px rgba(0,0,0,0.08);
+      --shadow-lg: 0 8px 32px rgba(0,0,0,0.1);
     }
 
     * {
@@ -26,157 +49,482 @@
       box-sizing: border-box;
     }
 
+    html {
+      scroll-behavior: smooth;
+    }
+
     body {
-      font-family: 'Noto Sans TC', sans-serif;
+      font-family: var(--font-body);
       background-color: var(--bg);
       color: var(--text);
       font-size: 16px;
       line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
     }
 
-    .font-accent {
-      font-family: 'Quicksand', sans-serif;
-    }
-
-    /* Section base */
-    section {
-      padding: 60px 20px;
-    }
-
-    h1 { font-size: 44px; font-weight: 700; }
-    h2 { font-size: 28px; font-weight: 700; }
-    h3 { font-size: 20px; font-weight: 500; }
-
+    /* ===== LAYOUT ===== */
     .container {
       max-width: 1200px;
       margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    section {
+      padding: 80px 0;
+    }
+
+    h1, h2, h3 {
+      font-family: var(--font-display);
+      font-weight: 700;
+      line-height: 1.2;
+    }
+
+    h1 { font-size: clamp(36px, 8vw, 64px); }
+    h2 { font-size: clamp(28px, 5vw, 40px); }
+    h3 { font-size: 20px; font-weight: 500; }
+
+    /* ===== NAVBAR ===== */
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      background: rgba(255, 254, 249, 0.9);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(232, 168, 124, 0.15);
+      transition: box-shadow 0.3s ease;
+    }
+
+    .navbar.scrolled {
+      box-shadow: var(--shadow-sm);
+    }
+
+    .navbar .container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 72px;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      color: var(--text);
+    }
+
+    .logo-icon {
+      width: 44px;
+      height: 44px;
+      background: linear-gradient(135deg, var(--peach) 0%, var(--rose) 100%);
+      border-radius: var(--radius);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+    }
+
+    .logo-text {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 20px;
+      color: var(--primary-dark);
+    }
+
+    .nav-links {
+      display: none;
+      list-style: none;
+      gap: 32px;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: var(--text);
+      font-size: 15px;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover {
+      color: var(--peach);
+    }
+
+    .nav-cta {
+      background: var(--peach);
+      color: white;
+      padding: 10px 20px;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 14px;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .nav-cta:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(232, 168, 124, 0.4);
     }
 
     /* ===== HERO ===== */
     .hero {
-      position: relative;
       min-height: 100vh;
       display: flex;
       align-items: center;
-      justify-content: center;
-      text-align: center;
+      position: relative;
       overflow: hidden;
-      background: linear-gradient(135deg, rgba(255,254,249,0.88) 0%, rgba(245,213,200,0.88) 100%), url('images/hero-1.jpg') center/cover no-repeat;
+      background: var(--bg);
+      padding-top: 72px;
     }
 
-    .hero-bg {
+    .hero-decor {
       position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: 0;
+      inset: 0;
+      pointer-events: none;
+      overflow: hidden;
+    }
+
+    .hero-decor .circle {
+      position: absolute;
+      border-radius: 50%;
+    }
+
+    .hero-decor .circle-1 {
+      width: 400px;
+      height: 400px;
+      background: linear-gradient(135deg, rgba(133, 184, 203, 0.2) 0%, rgba(133, 184, 203, 0.05) 100%);
+      top: -100px;
+      right: -100px;
+    }
+
+    .hero-decor .circle-2 {
+      width: 300px;
+      height: 300px;
+      background: linear-gradient(135deg, rgba(245, 213, 200, 0.3) 0%, rgba(245, 213, 200, 0.1) 100%);
+      bottom: 50px;
+      left: -80px;
+    }
+
+    .hero-decor .circle-3 {
+      width: 150px;
+      height: 150px;
+      background: linear-gradient(135deg, rgba(232, 168, 124, 0.25) 0%, rgba(232, 168, 124, 0.1) 100%);
+      top: 200px;
+      left: 15%;
+    }
+
+    .hero-decor .shape {
+      position: absolute;
+    }
+
+    .hero-decor .shape-1 {
+      width: 60px;
+      height: 60px;
+      background: var(--sky);
+      opacity: 0.15;
+      border-radius: var(--radius);
+      top: 20%;
+      right: 20%;
+      transform: rotate(15deg);
+    }
+
+    .hero-decor .shape-2 {
+      width: 40px;
+      height: 40px;
+      background: var(--peach);
+      opacity: 0.2;
+      border-radius: 50%;
+      bottom: 25%;
+      right: 25%;
+    }
+
+    .hero-decor .shape-3 {
+      width: 80px;
+      height: 80px;
+      border: 3px solid var(--rose);
+      border-radius: 50%;
+      opacity: 0.4;
+      top: 40%;
+      left: 8%;
+    }
+
+    .hero .container {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 48px;
+      align-items: center;
+      position: relative;
+      z-index: 1;
     }
 
     .hero-content {
-      position: relative;
-      z-index: 1;
-      padding: 40px 20px;
+      text-align: center;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--white);
+      border: 1px solid var(--rose);
+      padding: 8px 16px;
+      border-radius: 50px;
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--primary-dark);
+      margin-bottom: 24px;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .hero-badge span {
+      width: 8px;
+      height: 8px;
+      background: var(--peach);
+      border-radius: 50%;
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.5; transform: scale(1.2); }
     }
 
     .hero h1 {
+      margin-bottom: 8px;
       color: var(--text);
-      margin-bottom: 16px;
-      letter-spacing: 2px;
     }
 
-    .hero .tagline {
-      font-family: 'Quicksand', sans-serif;
-      font-size: 24px;
-      color: var(--accent);
-      font-weight: 600;
-      margin-bottom: 24px;
+    .hero h1 span {
+      color: var(--peach);
     }
 
-    .hero .brand-name {
-      display: inline-block;
-      background: var(--primary);
-      color: white;
-      padding: 12px 32px;
-      border-radius: 50px;
-      font-size: 18px;
+    .hero-tagline {
+      font-family: var(--font-display);
+      font-size: clamp(20px, 4vw, 28px);
+      color: var(--sky);
       font-weight: 500;
+      margin-bottom: 32px;
+    }
+
+    .hero-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      justify-content: center;
+      margin-bottom: 40px;
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--peach);
+      color: white;
+      padding: 14px 28px;
+      border-radius: 50px;
       text-decoration: none;
-      transition: transform 0.3s, box-shadow 0.3s;
+      font-weight: 600;
+      font-size: 16px;
+      transition: transform 0.2s, box-shadow 0.2s;
     }
 
-    .hero .brand-name:hover {
-      transform: scale(1.02);
-      box-shadow: 0 8px 25px rgba(232, 168, 124, 0.4);
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(232, 168, 124, 0.4);
     }
 
-    .hero .followers {
-      margin-top: 20px;
-      font-family: 'Quicksand', sans-serif;
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--white);
+      color: var(--text);
+      padding: 14px 28px;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 16px;
+      border: 2px solid var(--rose);
+      transition: transform 0.2s, border-color 0.2s;
+    }
+
+    .btn-secondary:hover {
+      transform: translateY(-2px);
+      border-color: var(--peach);
+    }
+
+    .hero-stats {
+      display: flex;
+      justify-content: center;
+      gap: 40px;
+      padding-top: 32px;
+      border-top: 1px solid rgba(0,0,0,0.06);
+    }
+
+    .stat {
+      text-align: center;
+    }
+
+    .stat-value {
+      font-family: var(--font-display);
+      font-size: 32px;
+      font-weight: 700;
+      color: var(--peach);
+    }
+
+    .stat-label {
       font-size: 14px;
       color: var(--text-light);
     }
 
+    .hero-visual {
+      position: relative;
+      display: flex;
+      justify-content: center;
+    }
+
+    .hero-image-wrapper {
+      position: relative;
+      width: 100%;
+      max-width: 480px;
+    }
+
+    .hero-image {
+      width: 100%;
+      aspect-ratio: 4/5;
+      object-fit: cover;
+      border-radius: var(--radius-xl);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .hero-float-card {
+      position: absolute;
+      background: var(--white);
+      padding: 16px 20px;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-md);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .hero-float-card.card-1 {
+      bottom: 40px;
+      left: -20px;
+    }
+
+    .hero-float-card.card-2 {
+      top: 40px;
+      right: -20px;
+    }
+
+    .float-icon {
+      width: 44px;
+      height: 44px;
+      background: var(--rose);
+      border-radius: var(--radius);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+    }
+
+    .float-icon.sky {
+      background: rgba(133, 184, 203, 0.2);
+    }
+
+    .float-text {
+      font-size: 14px;
+    }
+
+    .float-text strong {
+      display: block;
+      font-size: 16px;
+      color: var(--text);
+    }
+
+    .float-text span {
+      color: var(--text-light);
+    }
+
+    /* ===== SECTION HEADER ===== */
+    .section-header {
+      text-align: center;
+      margin-bottom: 48px;
+    }
+
+    .section-label {
+      display: inline-block;
+      background: var(--rose);
+      color: var(--primary-dark);
+      padding: 6px 16px;
+      border-radius: 50px;
+      font-size: 13px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 16px;
+    }
+
+    .section-header h2 {
+      margin-bottom: 12px;
+    }
+
+    .section-header p {
+      color: var(--text-light);
+      font-size: 17px;
+      max-width: 500px;
+      margin: 0 auto;
+    }
+
     /* ===== PROMISES ===== */
     .promises {
-      background: var(--card-bg);
-    }
-
-    .section-title {
-      text-align: center;
-      margin-bottom: 40px;
-    }
-
-    .section-title h2 {
-      color: var(--text);
-      margin-bottom: 8px;
-    }
-
-    .section-title p {
-      color: var(--text-light);
-      font-size: 16px;
+      background: var(--white);
     }
 
     .promise-grid {
       display: grid;
       grid-template-columns: 1fr;
-      gap: 20px;
+      gap: 24px;
     }
 
     .promise-card {
-      background: var(--card-bg);
-      border-radius: 16px;
-      padding: 32px 24px;
+      background: var(--bg);
+      border-radius: var(--radius-lg);
+      padding: 32px 28px;
       text-align: center;
-      border: 2px solid var(--accent-warm);
+      border: 1px solid rgba(232, 168, 124, 0.15);
       transition: transform 0.3s, box-shadow 0.3s;
     }
 
     .promise-card:hover {
-      transform: scale(1.02);
-      box-shadow: 0 12px 30px rgba(133, 184, 203, 0.2);
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-lg);
     }
 
     .promise-icon {
-      width: 64px;
-      height: 64px;
-      margin: 0 auto 16px;
-      background: var(--accent-warm);
-      border-radius: 50%;
+      width: 72px;
+      height: 72px;
+      margin: 0 auto 20px;
+      background: linear-gradient(135deg, var(--rose) 0%, var(--cream) 100%);
+      border-radius: var(--radius-lg);
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 28px;
+      font-size: 32px;
     }
 
     .promise-card h3 {
       color: var(--primary-dark);
-      margin-bottom: 8px;
+      margin-bottom: 10px;
     }
 
     .promise-card p {
       color: var(--text-light);
       font-size: 15px;
+      line-height: 1.7;
     }
 
     /* ===== PRODUCTS ===== */
@@ -186,141 +534,202 @@
 
     .product-grid {
       display: grid;
-      grid-template-columns: 1fr;
+      grid-template-columns: repeat(2, 1fr);
       gap: 20px;
     }
 
     .product-card {
-      background: var(--card-bg);
-      border-radius: 16px;
+      background: var(--white);
+      border-radius: var(--radius);
       overflow: hidden;
       transition: transform 0.3s, box-shadow 0.3s;
     }
 
     .product-card:hover {
-      transform: scale(1.02);
-      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-md);
+    }
+
+    .product-img-wrap {
+      position: relative;
+      overflow: hidden;
+      aspect-ratio: 1;
     }
 
     .product-img {
       width: 100%;
-      height: 220px;
+      height: 100%;
       object-fit: cover;
-      background: var(--accent-warm);
+      transition: transform 0.4s;
+    }
+
+    .product-card:hover .product-img {
+      transform: scale(1.05);
+    }
+
+    .product-tag {
+      position: absolute;
+      top: 12px;
+      left: 12px;
+      background: var(--sky);
+      color: white;
+      padding: 4px 12px;
+      border-radius: 50px;
+      font-size: 12px;
+      font-weight: 600;
+    }
+
+    .product-tag.new {
+      background: var(--peach);
+    }
+
+    .product-tag.sale {
+      background: #E85D5D;
     }
 
     .product-info {
       padding: 16px;
     }
 
-    .product-tag {
-      display: inline-block;
-      background: var(--accent);
-      color: white;
-      font-size: 12px;
-      padding: 4px 10px;
-      border-radius: 20px;
-      font-family: 'Quicksand', sans-serif;
-      margin-bottom: 8px;
-    }
-
     .product-info h3 {
+      font-size: 16px;
+      margin-bottom: 6px;
       color: var(--text);
-      margin-bottom: 4px;
     }
 
     .product-price {
-      font-family: 'Quicksand', sans-serif;
-      color: var(--primary-dark);
+      font-family: var(--font-display);
       font-size: 18px;
       font-weight: 700;
+      color: var(--primary-dark);
+    }
+
+    .product-price .original {
+      font-size: 14px;
+      color: var(--text-light);
+      text-decoration: line-through;
+      margin-left: 8px;
+      font-weight: 500;
     }
 
     /* ===== STORY ===== */
     .story {
-      background: linear-gradient(135deg, var(--accent-warm) 0%, var(--bg) 100%);
+      background: linear-gradient(180deg, var(--white) 0%, var(--rose) 100%);
     }
 
     .story-content {
-      max-width: 800px;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 48px;
+      align-items: center;
+      max-width: 900px;
       margin: 0 auto;
+    }
+
+    .story-image {
+      position: relative;
+    }
+
+    .story-image img {
+      width: 100%;
+      max-width: 360px;
+      aspect-ratio: 1;
+      object-fit: cover;
+      border-radius: var(--radius-xl);
+      box-shadow: var(--shadow-lg);
+      margin: 0 auto;
+      display: block;
+    }
+
+    .story-image::before {
+      content: '';
+      position: absolute;
+      top: -16px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 120px;
+      height: 4px;
+      background: var(--peach);
+      border-radius: 2px;
+    }
+
+    .story-text {
       text-align: center;
     }
 
-    .story-avatar {
-      width: 120px;
-      height: 120px;
-      border-radius: 50%;
-      object-fit: cover;
-      border: 4px solid var(--primary);
-      margin-bottom: 24px;
-    }
-
-    .story h2 {
+    .story-text h2 {
       color: var(--primary-dark);
-      margin-bottom: 16px;
+      margin-bottom: 20px;
     }
 
-    .story p {
+    .story-text p {
       color: var(--text);
       font-size: 16px;
-      line-height: 1.8;
+      line-height: 1.9;
       margin-bottom: 16px;
     }
 
     .story-signature {
-      font-family: 'Quicksand', sans-serif;
-      color: var(--accent);
-      font-size: 18px;
+      font-family: var(--font-display);
+      color: var(--sky);
+      font-size: 20px;
+      font-weight: 500;
       margin-top: 24px;
     }
 
-    /* ===== STUDIO ===== */
-    .studio {
-      background: var(--card-bg);
+    /* ===== LIFESTYLE ===== */
+    .lifestyle {
+      background: var(--white);
+      overflow: hidden;
     }
 
-    .studio-content {
+    .lifestyle-grid {
       display: grid;
-      grid-template-columns: 1fr;
-      gap: 32px;
-      align-items: center;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
     }
 
-    .studio-img {
+    .lifestyle-item {
+      position: relative;
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      aspect-ratio: 1;
+    }
+
+    .lifestyle-item:first-child {
+      grid-column: span 2;
+      aspect-ratio: 2/1;
+    }
+
+    .lifestyle-item img {
       width: 100%;
-      height: 280px;
+      height: 100%;
       object-fit: cover;
-      border-radius: 24px;
-      background: var(--accent-warm);
+      transition: transform 0.4s;
     }
 
-    .studio-info h2 {
-      color: var(--primary-dark);
-      margin-bottom: 16px;
+    .lifestyle-item:hover img {
+      transform: scale(1.05);
     }
 
-    .studio-info p {
-      color: var(--text);
-      margin-bottom: 12px;
-      display: flex;
-      align-items: flex-start;
-      gap: 12px;
+    .lifestyle-overlay {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 24px;
+      background: linear-gradient(transparent, rgba(0,0,0,0.4));
+      color: white;
     }
 
-    .studio-info .icon {
-      color: var(--accent);
-      font-size: 20px;
-      flex-shrink: 0;
+    .lifestyle-overlay h3 {
+      font-size: 18px;
+      margin-bottom: 4px;
     }
 
-    .studio-note {
-      background: var(--accent-warm);
-      padding: 16px;
-      border-radius: 16px;
-      margin-top: 16px;
-      font-size: 15px;
-      color: var(--text);
+    .lifestyle-overlay span {
+      font-size: 14px;
+      opacity: 0.8;
     }
 
     /* ===== CONTACT ===== */
@@ -332,12 +741,13 @@
 
     .contact h2 {
       color: white;
-      margin-bottom: 8px;
+      margin-bottom: 12px;
     }
 
     .contact > .container > p {
-      color: rgba(255, 255, 255, 0.7);
-      margin-bottom: 32px;
+      color: rgba(255, 255, 255, 0.6);
+      margin-bottom: 40px;
+      font-size: 17px;
     }
 
     .contact-grid {
@@ -345,71 +755,93 @@
       grid-template-columns: 1fr;
       gap: 16px;
       max-width: 500px;
-      margin: 0 auto;
+      margin: 0 auto 48px;
     }
 
     .contact-item {
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 12px;
-      padding: 16px 24px;
-      background: rgba(255, 255, 255, 0.1);
-      border-radius: 16px;
+      gap: 14px;
+      padding: 18px 28px;
+      background: rgba(255, 255, 255, 0.08);
+      border-radius: var(--radius);
       text-decoration: none;
       color: white;
-      transition: transform 0.3s, background 0.3s;
+      transition: transform 0.2s, background 0.2s;
     }
 
     .contact-item:hover {
-      transform: scale(1.02);
-      background: rgba(255, 255, 255, 0.2);
+      transform: translateY(-2px);
+      background: rgba(255, 255, 255, 0.15);
     }
 
     .contact-icon {
-      font-size: 24px;
+      width: 44px;
+      height: 44px;
+      background: var(--peach);
+      border-radius: var(--radius);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
     }
 
     .contact-text {
       font-size: 16px;
+      font-weight: 500;
     }
 
     .footer {
-      text-align: center;
-      padding-top: 40px;
-      color: rgba(255, 255, 255, 0.5);
+      padding-top: 32px;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      color: rgba(255, 255, 255, 0.4);
       font-size: 14px;
-      font-family: 'Quicksand', sans-serif;
     }
 
-    /* ===== RESPONSIVE 768px+ ===== */
-    @media (min-width: 768px) {
-      section {
-        padding: 80px 40px;
-      }
-
-      .hero .tagline {
-        font-size: 32px;
-      }
-
+    /* ===== RESPONSIVE ===== */
+    @media (min-width: 640px) {
       .promise-grid {
         grid-template-columns: repeat(3, 1fr);
       }
-
+      
       .product-grid {
         grid-template-columns: repeat(3, 1fr);
       }
+    }
 
-      .product-card:last-child {
-        grid-column: span 1;
+    @media (min-width: 768px) {
+      .nav-links {
+        display: flex;
+      }
+      
+      section {
+        padding: 100px 0;
       }
 
-      .product-grid {
-        grid-template-columns: repeat(3, 1fr);
-      }
-
-      .studio-content {
+      .hero .container {
         grid-template-columns: 1fr 1fr;
+        gap: 60px;
+      }
+
+      .hero-content {
+        text-align: left;
+      }
+
+      .hero-buttons {
+        justify-content: flex-start;
+      }
+
+      .hero-stats {
+        justify-content: flex-start;
+      }
+
+      .story-content {
+        grid-template-columns: 1fr 1.2fr;
+      }
+
+      .story-text {
+        text-align: left;
       }
 
       .contact-grid {
@@ -417,41 +849,101 @@
         max-width: 800px;
       }
     }
+
+    @media (min-width: 1024px) {
+      .product-grid {
+        grid-template-columns: repeat(4, 1fr);
+      }
+    }
   </style>
 </head>
 <body>
 
+  <!-- ===== NAVBAR ===== -->
+  <nav class="navbar" id="navbar">
+    <div class="container">
+      <a href="#" class="logo">
+        <div class="logo-icon">🦌</div>
+        <span class="logo-text">Ruroro</span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="#promises">品牌承諾</a></li>
+        <li><a href="#products">精選商品</a></li>
+        <li><a href="#story">品牌故事</a></li>
+        <li><a href="#lifestyle">生活風格</a></li>
+      </ul>
+      <a href="https://www.instagram.com/ruroro5233" target="_blank" class="nav-cta">立即選購</a>
+    </div>
+  </nav>
+
   <!-- ===== HERO ===== -->
   <section class="hero">
-    <svg class="hero-bg" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
-      <circle cx="100" cy="150" r="80" fill="#85B8CB" opacity="0.3"/>
-      <circle cx="1300" cy="200" r="120" fill="#E8A87C" opacity="0.2"/>
-      <circle cx="200" cy="700" r="100" fill="#F5D5C8" opacity="0.4"/>
-      <circle cx="1100" cy="750" r="90" fill="#85B8CB" opacity="0.25"/>
-      <circle cx="700" cy="100" r="60" fill="#E8A87C" opacity="0.15"/>
-      <polygon points="50,400 120,320 120,480" fill="#85B8CB" opacity="0.2"/>
-      <polygon points="1350,500 1420,420 1420,580" fill="#F5D5C8" opacity="0.3"/>
-      <polygon points="600,800 680,720 760,800" fill="#E8A87C" opacity="0.2"/>
-      <circle cx="400" cy="300" r="40" fill="#85B8CB" opacity="0.2"/>
-      <circle cx="1000" cy="400" r="50" fill="#F5D5C8" opacity="0.25"/>
-      <polygon points="1200,100 1280,20 1360,100" fill="#85B8CB" opacity="0.15"/>
-      <circle cx="800" cy="600" r="70" fill="#E8A87C" opacity="0.1"/>
-      <circle cx="300" cy="500" r="30" fill="#85B8CB" opacity="0.2"/>
-    </svg>
-    <div class="hero-content">
-      <h1>Ruroro 童裝</h1>
-      <p class="tagline">穿出童年的快樂</p>
-      <a href="https://www.instagram.com/ruroro5233" target="_blank" class="brand-name">
-        @ruroro5233
-      </a>
-      <p class="followers font-accent">✦ 203 位媽咪粉絲共同嚴選 ✦</p>
+    <div class="hero-decor">
+      <div class="circle circle-1"></div>
+      <div class="circle circle-2"></div>
+      <div class="circle circle-3"></div>
+      <div class="shape shape-1"></div>
+      <div class="shape shape-2"></div>
+      <div class="shape shape-3"></div>
+    </div>
+    <div class="container">
+      <div class="hero-content">
+        <div class="hero-badge">
+          <span></span>
+          媽媽嚴選 0-6 歲童裝
+        </div>
+        <h1>Ruroro <span>童裝</span></h1>
+        <p class="hero-tagline">穿出童年的快樂 ✦</p>
+        <div class="hero-buttons">
+          <a href="https://www.instagram.com/ruroro5233" target="_blank" class="btn-primary">
+            <span>📸</span> 前往 Instagram
+          </a>
+          <a href="#products" class="btn-secondary">
+            <span>♡</span> 精選商品
+          </a>
+        </div>
+        <div class="hero-stats">
+          <div class="stat">
+            <div class="stat-value">203+</div>
+            <div class="stat-label">媽咪粉絲</div>
+          </div>
+          <div class="stat">
+            <div class="stat-value">100%</div>
+            <div class="stat-label">實拍嚴選</div>
+          </div>
+          <div class="stat">
+            <div class="stat-value">0-6Y</div>
+            <div class="stat-label">年齡區間</div>
+          </div>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <div class="hero-image-wrapper">
+          <img class="hero-image" src="images/hero-1.jpg" alt="Ruroro 童裝">
+          <div class="hero-float-card card-1">
+            <div class="float-icon">✨</div>
+            <div class="float-text">
+              <strong>實拍現貨</strong>
+              <span>所見即所得</span>
+            </div>
+          </div>
+          <div class="hero-float-card card-2">
+            <div class="float-icon sky">🌿</div>
+            <div class="float-text">
+              <strong>純棉友善</strong>
+              <span>敏感肌適用</span>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </section>
 
   <!-- ===== PROMISES ===== -->
-  <section class="promises">
+  <section class="promises" id="promises">
     <div class="container">
-      <div class="section-title">
+      <div class="section-header">
+        <span class="section-label">Brand Promise</span>
         <h2>品牌承諾</h2>
         <p>媽媽嚴選・安心感每一刻</p>
       </div>
@@ -459,76 +951,89 @@
         <div class="promise-card">
           <div class="promise-icon">📷</div>
           <h3>實拍現貨</h3>
-          <p>每件商品真實拍攝，所見即所得<br>庫存充足，快速出貨</p>
+          <p>每件商品皆為真實拍攝，所見即所得。庫存充足，下單後快速出貨。</p>
         </div>
         <div class="promise-card">
           <div class="promise-icon">✨</div>
           <h3>專業嚴選</h3>
-          <p>從布料到手感层层把關<br>符合寶貝成長需求</p>
+          <p>從布料質感、裁車做工到實際穿著體驗，層層把關符合寶貝成長需求。</p>
         </div>
         <div class="promise-card">
           <div class="promise-icon">🌿</div>
           <h3>純棉過敏友善</h3>
-          <p>精選純棉面料<br>溫和親膚，敏感肌寶貝也能安心穿</p>
+          <p>精選純棉面料，溫和親膚。敏感肌的寶貝也能安心穿著。</p>
         </div>
       </div>
     </div>
   </section>
 
   <!-- ===== PRODUCTS ===== -->
-  <section class="products">
+  <section class="products" id="products">
     <div class="container">
-      <div class="section-title">
+      <div class="section-header">
+        <span class="section-label">Collection</span>
         <h2>精選商品</h2>
         <p>0-6 歲童趣穿搭推薦</p>
       </div>
       <div class="product-grid">
         <div class="product-card">
-          <img class="product-img" src="images/product-1.jpg" alt="Ruroro童裝精選" onerror="this.style.display='none'">
+          <div class="product-img-wrap">
+            <img class="product-img" src="images/product-1.jpg" alt="童趣印花套裝">
+            <span class="product-tag new">新品</span>
+          </div>
           <div class="product-info">
-            <span class="product-tag font-accent">新品</span>
             <h3>童趣印花套裝</h3>
-            <p class="product-price font-accent">NT$ 590</p>
+            <p class="product-price">NT$ 590</p>
           </div>
         </div>
         <div class="product-card">
-          <img class="product-img" src="https://images.unsplash.com/photo-1503919545889-aef636e10ad4?w=400&h=400&fit=crop" alt="北歐風連帽外套">
+          <div class="product-img-wrap">
+            <img class="product-img" src="images/lifestyle-1.jpg" alt="北歐風連帽外套">
+            <span class="product-tag">熱銷</span>
+          </div>
           <div class="product-info">
-            <span class="product-tag font-accent">熱銷</span>
             <h3>北歐風連帽外套</h3>
-            <p class="product-price font-accent">NT$ 780</p>
+            <p class="product-price">NT$ 780</p>
           </div>
         </div>
         <div class="product-card">
-          <img class="product-img" src="https://images.unsplash.com/photo-1515488042361-ee00e0ddd4e4?w=400&h=400&fit=crop" alt="柔和純棉連身衣">
+          <div class="product-img-wrap">
+            <img class="product-img" src="https://images.unsplash.com/photo-1515488042361-ee00e0ddd4e4?w=400&h=400&fit=crop" alt="柔和純棉連身衣">
+            <span class="product-tag">嚴選</span>
+          </div>
           <div class="product-info">
-            <span class="product-tag font-accent">嚴選</span>
             <h3>柔和純棉連身衣</h3>
-            <p class="product-price font-accent">NT$ 450</p>
+            <p class="product-price">NT$ 450</p>
           </div>
         </div>
         <div class="product-card">
-          <img class="product-img" src="https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?w=400&h=400&fit=crop" alt="條紋家居服套裝">
+          <div class="product-img-wrap">
+            <img class="product-img" src="https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?w=400&h=400&fit=crop" alt="條紋家居服套裝">
+            <span class="product-tag">舒適</span>
+          </div>
           <div class="product-info">
-            <span class="product-tag font-accent">舒適</span>
             <h3>條紋家居服套裝</h3>
-            <p class="product-price font-accent">NT$ 520</p>
+            <p class="product-price">NT$ 520</p>
           </div>
         </div>
         <div class="product-card">
-          <img class="product-img" src="https://images.unsplash.com/photo-1519238263530-99bdd11df2ea?w=400&h=400&fit=crop" alt="童趣拼接褲">
+          <div class="product-img-wrap">
+            <img class="product-img" src="https://images.unsplash.com/photo-1519238263530-99bdd11df2ea?w=400&h=400&fit=crop" alt="童趣拼接褲">
+            <span class="product-tag">百搭</span>
+          </div>
           <div class="product-info">
-            <span class="product-tag font-accent">百搭</span>
             <h3>童趣拼接褲</h3>
-            <p class="product-price font-accent">NT$ 380</p>
+            <p class="product-price">NT$ 380</p>
           </div>
         </div>
         <div class="product-card">
-          <img class="product-img" src="https://images.unsplash.com/photo-1543852786-1cf6624b9987?w=400&h=400&fit=crop" alt="柔軟針織開衫">
+          <div class="product-img-wrap">
+            <img class="product-img" src="https://images.unsplash.com/photo-1543852786-1cf6624b9987?w=400&h=400&fit=crop" alt="柔軟針織開衫">
+            <span class="product-tag">必備</span>
+          </div>
           <div class="product-info">
-            <span class="product-tag font-accent">必備</span>
             <h3>柔軟針織開衫</h3>
-            <p class="product-price font-accent">NT$ 650</p>
+            <p class="product-price">NT$ 650</p>
           </div>
         </div>
       </div>
@@ -536,44 +1041,57 @@
   </section>
 
   <!-- ===== STORY ===== -->
-  <section class="story">
+  <section class="story" id="story">
     <div class="container">
       <div class="story-content">
-        <img class="story-avatar" src="https://images.unsplash.com/photo-1478147057286-239e0149e63d?w=200&h=200&fit=crop" alt="Ruroro 品牌創辦人">
-        <h2>品牌故事</h2>
-        <p>
-          作為兩個孩子的媽媽，我深刻了解爸媽對孩子穿著的堅持——<br>
-          要舒適、要安全、也要可愛！<br><br>
-          Ruroro 鹿肉肉的每一件選品，從布料質感、裁車做工到實際穿著體驗，<br>
-          都是我親自把關、反覆確認的成果。<br><br>
-          「媽媽嚴選」不只是口號，是每一天的堅持。
-        </p>
-        <p class="story-signature font-accent">— Ruroro 鹿肉肉</p>
+        <div class="story-image">
+          <img src="https://images.unsplash.com/photo-1478147057286-239e0149e63d?w=400&h=400&fit=crop" alt="Ruroro 品牌創辦人">
+        </div>
+        <div class="story-text">
+          <h2>品牌故事</h2>
+          <p>
+            作為兩個孩子的媽媽，我深刻了解爸媽對孩子穿著的堅持——要舒適、要安全、也要可愛！
+          </p>
+          <p>
+            Ruroro 鹿肉肉的每一件選品，從布料質感、裁車做工到實際穿著體驗，都是我親自把關、反覆確認的成果。
+          </p>
+          <p>
+            「媽媽嚴選」不只是口號，是每一天的堅持。
+          </p>
+          <p class="story-signature">— Ruroro 鹿肉肉</p>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- ===== STUDIO ===== -->
-  <section class="studio">
+  <!-- ===== LIFESTYLE ===== -->
+  <section class="lifestyle" id="lifestyle">
     <div class="container">
-      <div class="studio-content">
-        <img class="studio-img" src="https://images.unsplash.com/photo-1580628351467-4c5c8f1edc8c?w=600&h=400&fit=crop" alt="Ruroro 工作室">
-        <div class="studio-info">
-          <h2>工作室・取貨</h2>
-          <p>
-            <span class="icon">📍</span>
-            <span>桃園市逸林街96-1號</span>
-          </p>
-          <p>
-            <span class="icon">⏰</span>
-            <span>取貨時間：請提前預約</span>
-          </p>
-          <p>
-            <span class="icon">📱</span>
-            <span>IG / Threads：@ruroro5233</span>
-          </p>
-          <div class="studio-note">
-            💡 小提醒：工作室採預約制，請先透過 IG 私訊預約取貨時間唷！這樣我可以準備好完美的包裝等您來。
+      <div class="section-header">
+        <span class="section-label">Lifestyle</span>
+        <h2>生活風格</h2>
+        <p>穿出屬於孩子的童趣時光</p>
+      </div>
+      <div class="lifestyle-grid">
+        <div class="lifestyle-item">
+          <img src="images/02_poster.png" alt="童趣穿搭">
+          <div class="lifestyle-overlay">
+            <h3>每日穿搭</h3>
+            <span>舒適與可愛兼顧</span>
+          </div>
+        </div>
+        <div class="lifestyle-item">
+          <img src="images/03_salt_grilled.png" alt="精選單品">
+          <div class="lifestyle-overlay">
+            <h3>精選單品</h3>
+            <span>質感純棉素材</span>
+          </div>
+        </div>
+        <div class="lifestyle-item">
+          <img src="images/04_fire.png" alt="實拍現貨">
+          <div class="lifestyle-overlay">
+            <h3>實拍現貨</h3>
+            <span>所見即所得</span>
           </div>
         </div>
       </div>
@@ -581,7 +1099,7 @@
   </section>
 
   <!-- ===== CONTACT ===== -->
-  <section class="contact">
+  <section class="contact" id="contact">
     <div class="container">
       <h2>聯絡我們</h2>
       <p>歡迎私訊詢問・合作提案</p>
@@ -600,10 +1118,22 @@
         </a>
       </div>
       <div class="footer">
-        <p class="font-accent">© 2026 Ruroro童裝（鹿肉肉）All Rights Reserved.</p>
+        <p>© 2026 Ruroro童裝（鹿肉肉）All Rights Reserved.</p>
       </div>
     </div>
   </section>
+
+  <script>
+    // Navbar scroll effect
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 50) {
+        navbar.classList.add('scrolled');
+      } else {
+        navbar.classList.remove('scrolled');
+      }
+    });
+  </script>
 
 </body>
 </html>
